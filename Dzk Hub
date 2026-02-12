@@ -1,1 +1,516 @@
---[[ v1.0.0 https://wearedevs.net/obfuscator ]] return(function(...)local j={"\065\054\076\117\110\050\061\061","\087\083\083\074\087\109\098\061","\071\068\097\072\119\068\097\067\081\110\052\074\112\076\061\061";"\078\073\080\057\080\048\107\083\080\043\068\121\056\118\053\061","\088\103\108\072\109\077\061\061";"\107\106\066\090\085\080\122\069\115\068\047\050";"\100\068\083\086\049\085\049\080\056\085\048\056\071\101\112\112\107\055\048\097\119\050\061\061";"\119\117\051\082\088\109\121\049\084\117\102\052\109\085\082\085\048\080\074\108\087\098\115\061";"\101\105\086\099\047\098\089\047\101\100\116\061";"\072\111\087\057\113\076\061\061";"\117\057\065\084\066\076\061\061";"\080\055\065\119\090\076\061\061";"\065\050\070\075\108\066\106\076\065\088\115\061","\087\122\109\073\069\055\052\122\103\090\120\070";"\117\084\111\068\053\048\077\120","\075\053\065\049\087\077\061\061","\084\071\086\121\054\117\051\054\117\108\068\071";"\102\089\089\116\121\098\067\054","\113\071\098\100\118\047\109\089\100\071\050\061";"\088\090\043\103\105\050\061\061","\110\078\072\072\077\108\090\078\075\083\056\061";"\083\107\089\116\071\119\103\112\076\050\061\061";"\085\103\111\119\043\122\109\119\088\121\117\106","\086\097\067\049\107\073\122\122\111\090\085\104\099\083\113\061";"\079\110\098\084\112\072\043\055";"\111\112\107\097\078\105\116\048\118\050\061\061";"\106\090\053\101\043\050\061\061","\102\122\067\075\108\079\050\048\077\056\081\101";"\048\072\073\081\048\076\061\061";"\065\048\078\107\097\114\105\078";"\113\084\106\072\078\050\061\061";"\102\076\074\103\106\100\103\088","\076\120\069\103\057\067\069\070\053\073\088\121\100\120\099\109\084\082\088\049\120\116\115\072\069\086\113\061";"\116\119\098\117\110\089\080\080\083\056\065\082\073\100\098\120","\056\105\078\081\119\119\098\107\081\099\053\055\048\071\088\043\112\099\080\119\043\079\047\048\080\050\061\061","\119\074\076\108\113\110\066\053\098\079\101\080\081\079\107\113\097\066\076\061","\098\051\071\067\120\103\106\073","\101\088\080\088\107\050\113\069","\112\068\089\069\081\080\107\053","\090\104\066\082\051\107\082\100\081\077\061\061";"\110\074\049\117\109\076\078\118\097\053\077\106\055\115\043\100\052\088\107\079\056\084\061\061","\086\072\066\118\107\070\112\114\122\070\101\054\076\108\107\053\120\084\061\061";"\071\051\108\082\066\069\120\119\068\048\082\088\089\055\047\078";"\112\068\097\072\121\110\052\114\120\103\106\108\081\080\066\054\056\068\097\108","\070\106\078\070\088\077\119\048\113\104\086\088\068\069\121\081","\056\052\084\088\121\052\087\084\072\116\119\061","\120\102\110\100\100\100\113\099\121\113\057\107\057\077\061\061";"\056\068\099\054\056\068\066\072","\049\088\073\053\113\100\120\120\088\052\056\061","\112\073\068\111\050\054\066\097\067\070\114\061","\114\049\116\052\057\107\043\100\088\104\108\078\113\077\061\061","\070\089\099\114\112\103\116\061","\106\048\065\100\079\105\047\054\102\113\088\079\078\084\061\061","\071\116\055\050\054\097\121\056";"\097\080\066\047\098\080\097\067\115\079\071\052\081\080\097\074\081\080\097\111\115\076\061\061";"\119\097\090\117\119\051\052\102\119\110\081\104\122\080\107\116\076\072\111\061";"\097\076\087\078\070\106\107\081\104\072\056\055","\086\057\087\104\066\077\061\061","\082\067\119\068\120\079\053\082\112\120\113\061","\108\043\104\066\077\084\061\061","\074\043\074\100\078\114\043\072\100\053\111\061","\076\089\103\047\085\079\080\051\117\074\056\061";"\075\083\087\118\115\043\085\100","\117\106\071\067\070\043\079\117\087\076\061\061";"\051\114\080\112\090\056\048\113\120\097\078\100\119\056\085\068\054\084\061\061","\104\047\071\104\088\121\078\079\116\118\075\078";"\056\088\100\071\056\107\084\051\081\052\081\069\117\117\050\043","\098\117\090\070\076\108\072\074\043\054\101\052\071\084\061\061";"\102\104\053\074\078\074\053\073\098\086\078\070\098\097\106\077\102\073\102\065\055\055\057\061","\072\043\075\082\071\097\102\043\080\070\097\071";"\086\121\083\047\078\079\083\088\072\121\117\055\051\055\047\082\055\077\061\061";"\115\099\119\086\072\085\074\065\116\088\053\061","\084\106\088\068\077\050\061\061";"\073\078\067\114\111\085\052\114\099\084\061\061";"\084\068\084\061";"\082\099\116\100\107\075\115\061","\056\073\052\072\112\076\061\061";"\078\085\084\116\054\120\074\083\049\121\083\052\121\055\070\099";"\097\119\115\068\117\070\097\074\120\103\113\089\076\089\076\116","\107\119\113\084\098\097\097\080\098\119\112\118\113\055\115\068\103\080\115\061";"\077\050\061\061","\071\108\122\105\109\088\050\100\105\076\061\061";"\072\089\081\047\075\107\104\117\067\102\072\103\108\121\090\065\066\103\077\056\121\076\061\061";"\111\072\067\072\081\115\049\076","\076\051\090\052\056\070\071\052\119\068\097\074\081\080\052\043\121\050\061\061","\081\089\122\122\085\076\053\090\047\083\075\111\048\052\116\061";"\079\074\100\099\047\075\117\086\080\079\116\061";"\067\107\081\076\098\050\061\061","\109\072\072\090\077\050\116\099","\051\089\117\105\043\077\061\061";"\086\122\050\121\099\097\055\085\121\084\061\061";"\077\076\071\114\079\106\115\116\054\043\078\084","\102\083\121\122\077\084\061\061";"\103\080\076\089\113\097\071\070\103\097\113\072\098\074\118\104\086\076\061\061";"\113\080\104\047\121\119\069\090\098\073\052\103\056\051\069\069","\065\051\080\089\050\067\078\081\082\086\070\047\120\070\115\051\056\121\066\078","\086\082\081\112\076\074\090\105\071\051\081\114\121\097\118\073\119\077\061\061";"\054\054\099\115\105\105\120\110\074\099\085\115\102\089\083\082\081\050\061\061";"\099\099\115\110\121\103\077\050";"\071\119\081\047\117\052\118\084\119\111\056\072\071\072\047\105\119\103\084\061";"\066\119\073\101\076\108\088\107\107\103\078\076\111\077\061\061","\108\051\066\047\122\086\066\115\043\074\078\121\067\104\070\065","\110\088\121\085\087\077\061\061","\107\053\116\113\078\084\066\088\108\081\104\077";"\085\083\083\118\090\102\082\080\047\084\061\061";"\082\082\107\076\052\065\057\061";"\081\068\107\103\106\051\119\110\085\115\070\085\121\115\119\061";"\052\071\076\114\080\108\071\067\106\048\089\074\097\049\081\053";"\073\049\052\102\116\050\061\061";"\083\111\108\115\079\049\050\070","\112\068\101\047\112\119\098\067\119\089\111\108\121\111\047\054","\076\049\071\071\116\076\061\061";"\075\085\100\043\100\076\061\061";"\076\084\122\077\103\053\103\071\101\109\113\068\069\084\061\061","\085\078\099\067\116\074\075\075\107\090\082\114\118\083\106\101\080\109\109\067\073\097\074\099\115\051\090\109\049\050\061\061","\090\069\067\118\098\077\061\061";"\047\084\119\072\097\047\098\088\113\103\102\056\077\097\111\061","\074\103\057\070\113\097\077\078\048\057\056\061";"\081\068\066\067\121\050\061\061","\053\105\080\121\071\057\097\056\115\077\061\061","\117\103\116\104\056\097\101\105\121\103\114\089\121\086\071\055\113\076\061\061";"\066\084\076\074\109\090\066\121\083\097\086\112\098\088\106\048";"\054\052\078\051\102\077\061\061","\113\077\099\112\072\106\116\061";"\051\110\104\120\090\101\088\078\071\100\069\121\053\117\115\119\052\106\097\119\113\073\053\057\082\050\083\074\114\053\097\086\051\077\061\061";"\071\119\107\118\119\097\090\043\121\110\101\068\121\066\097\054\107\070\111\061","\121\082\079\061";"\110\081\098\118\055\076\061\061","\109\098\086\047\050\054\069\090";"\076\097\098\065\103\121\068\113\105\121\070\068\098\098\118\112\098\110\111\098\102\068\080\089";"\083\056\075\100\100\076\061\061";"\070\089\099\073\056\084\061\061","\047\072\049\048\118\113\083\086\075\067\068\075\057\077\122\079";"\081\103\104\043\076\103\107\084\117\089\119\068\119\108\052\079";"\073\084\079\061";"\048\122\075\102\117\110\082\078\117\048\103\048\067\078\050\061";"\053\107\071\089\068\081\118\071\109\088\077\061";"\071\110\052\054\112\079\112\101\098\073\107\072\076\068\069\101\121\080\076\061";"\106\080\056\120\113\079\056\109","\057\055\089\086\106\111\070\072\079\077\061\061";"\078\118\047\067\084\069\115\076\075\077\061\061";"\113\049\053\077\066\076\082\111\077\118\047\083\069\115\068\102";"\051\053\056\117\081\117\073\047\069\122\084\050\107\088\121\105\119\099\113\050\120\048\111\061","\073\118\090\115\118\083\050\048\055\120\108\098\079\076\061\061","\116\049\082\073\121\097\121\105\112\084\076\061","\056\068\069\069\098\050\061\061";"\097\057\085\054\112\050\061\061","\082\108\109\113\071\056\097\114\105\113\050\080\122\114\080\087","\099\076\106\110\111\070\075\089\101\102\122\084\115\050\070\068","\086\106\089\089\083\097\066\043\101\109\055\100\053\088\106\057\112\050\052\043\098\077\061\061","\082\114\054\081\068\050\061\061";"\098\068\097\072\121\103\097\072\056\070\071\069\056\110\104\052";"\088\111\051\070\077\074\047\112","\122\066\113\050\076\112\121\081";"\054\077\075\071\053\101\054\122\070\066\085\079\089\070\057\061","\055\103\071\070\118\084\061\061";"\097\103\078\083\070\069\049\056\116\111\084\051\118\072\043\073\089\072\115\061","\082\080\112\089\043\077\061\061","\068\100\119\051\086\090\050\098\052\105\048\049";"\047\106\073\072\074\116\079\061","\101\103\071\066\103\050\097\072\120\111\086\083\074\088\053\061";"\121\077\102\053\084\077\061\061";"\047\089\113\054\047\070\103\121\076\110\050\052\120\103\102\068\048\121\047\088\079\070\111\068\079\056\088\084\122\071\085\066","\086\110\099\072\120\103\112\106";"\078\051\084\068\076\085\113\069\099\072\088\079\110\102\048\080","\071\068\089\053\120\068\069\078\112\066\071\056\081\052\081\120","\076\100\072\075\069\057\106\068\090\043\110\099\084\090\115\081\120\083\086\068\109\090\072\074\118\050\061\061","\055\073\122\074\113\117\100\065\101\087\053\061","\087\054\052\109\101\084\061\061","\104\053\119\103\079\084\089\087\074\117\097\065\073\084\061\061";"\084\122\048\105\057\101\077\106\074\055\047\072\075\117\086\083\074\112\098\105\105\052\098\069";"\047\090\078\115\073\066\075\118\090\077\061\061";"\054\057\071\104\109\084\061\061";"\081\119\090\076\113\097\052\080\119\055\101\117\081\079\071\107\121\108\113\061","\100\072\090\088\080\101\083\115\103\104\084\098\116\076\086\099","\052\043\110\119\117\114\103\049\065\076\061\061","\103\075\105\068\098\043\100\043\100\077\061\061";"\066\086\074\079\113\057\053\100\056\076\061\061","\071\080\057\104\117\074\052\069\086\070\112\089\117\080\052\090","\077\085\049\067\053\079\086\105\098\050\061\061","\104\056\090\085\104\050\070\074";"\088\113\112\101\084\072\121\067","\068\097\107\081\098\103\049\086\113\074\119\061","\090\098\103\071\120\084\061\061";"\081\086\097\056\103\097\066\120\117\068\119\061";"\080\052\108\082\088\084\061\061","\076\105\083\119\121\052\050\061","\049\121\106\050\108\122\081\056\078\075\056\088\080\114\105\067\089\052\077\061","\081\080\099\054\081\103\089\078\112\070\115\061";"\079\112\104\103\055\107\111\077\054\109\101\047\056\071\051\108\089\084\081\071","","\097\088\101\077\106\108\116\083\048\103\120\082\113\049\106\086\051\084\104\074\071\077\076\061","\076\043\074\102\054\067\108\057\069\117\097\097\112\082\069\070\057\097\119\061";"\105\067\076\084\110\084\061\061";"\074\117\106\080\098\055\070\073\103\098\047\078\079\077\061\061";"\116\077\110\097\088\105\119\051\055\112\114\061","\117\055\071\072\098\079\081\052\081\077\061\061";"\070\089\099\101\121\110\071\052\083\077\061\061","\076\117\070\103\057\048\048\086","\071\068\097\072\076\068\069\101\121\080\071\067\112\103\116\061";"\055\100\051\082\074\113\075\073\105\121\114\061","\079\085\072\078\107\103\121\121\090\084\061\061","\052\118\051\078\083\089\100\071\100\084\061\061";"\077\047\076\061";"\106\066\057\051\085\047\087\116\089\068\086\076";"\112\072\066\052\056\110\112\105\121\119\097\071\097\119\101\052\071\077\061\061";"\086\113\102\089\069\076\107\099\065\050\061\061";"\056\122\102\106\105\055\102\097\118\084\061\061";"\078\073\098\115\075\048\097\050\117\102\085\085","\043\079\115\067\118\099\048\114\090\107\077\061","\049\115\082\067\065\084\061\061";"\119\086\083\067\089\088\073\066\055\116\113\061";"\071\043\050\113\052\050\061\061","\053\113\077\067\080\068\104\098\049\101\057\061";"\117\071\103\100\078\050\061\061";"\103\068\082\116\086\099\048\075\049\057\074\097\101\084\061\061","\097\068\066\074\121\072\071\101\076\072\106\102\107\119\090\055\081\084\061\061","\066\101\086\100\080\106\065\114\088\105\119\112\119\089\053\103\113\084\061\061","\070\104\050\043\072\050\061\061";"\120\080\056\072\121\052\066\047\097\086\052\114\117\072\050\106\117\072\057\061";"\056\110\104\047\081\072\081\066\103\080\069\106\071\119\099\089\098\097\053\061","\121\103\066\072\056\068\050\061","\111\097\054\111\053\077\061\061";"\113\079\047\054\113\051\112\079\098\068\107\056\120\119\071\106","\117\068\084\068\076\052\118\047\081\072\066\068\081\074\097\043\107\077\061\061";"\076\051\090\052\056\070\071\052\076\073\097\072\081\080\099\054";"\110\115\056\047\078\057\057\111\099\116\073\114","\121\080\099\069\112\055\107\072\098\110\052\054\112\084\061\061";"\052\120\074\090\072\076\061\061","\057\083\052\066\083\084\061\061";"\105\122\116\074\121\076\061\061";"\076\069\068\110\070\066\071\052\115\052\077\061","\108\075\079\048\082\121\113\075\066\113\122\085\055\048\115\052\102\081\066\098\119\043\115\061","\112\110\104\043\121\051\115\061";"\101\050\116\114\056\069\115\083\073\084\061\061","\076\108\111\101\054\085\116\050";"\119\068\097\072","\049\080\089\100\112\084\061\061";"\072\054\068\089\090\076\061\061","\047\101\111\056\114\078\109\117\067\079\121\078\110\082\084\061";"\120\114\052\105\089\084\061\061","\049\114\111\098\111\116\090\065\076\086\108\101\106\066\049\102","\090\080\076\089\117\052\081\115\112\056\116\061";"\056\066\101\104\084\049\098\120\120\049\105\077\085\076\061\061";"\099\098\076\077\104\053\107\067\086\070\071\056";"\098\110\097\047\121\051\112\052";"\080\098\106\101\103\118\071\080\047\105\079\108\054\077\061\061","\116\072\083\083\073\112\110\120\071\111\068\056\066\076\061\061";"\050\105\082\065\075\084\061\061";"\109\053\073\053\057\077\061\061";"\114\103\075\065\070\122\072\077\068\073\072\081\074\056\077\065","\112\070\090\067\121\051\115\061","\069\106\099\071\067\087\116\069\054\057\098\061";"\108\112\075\105\088\109\105\089\118\054\075\073\087\087\086\075","\099\106\050\055\066\077\061\061","\065\056\090\050\104\084\102\101\119\071\054\056\100\048\120\118\055\065\056\061";"\097\089\069\056\119\103\101\070\098\080\101\079\117\103\047\072\071\070\111\061","\113\054\077\055\047\054\121\107\075\118\076\065";"\067\098\078\116\113\077\061\061","\053\067\076\083\055\077\088\116","\099\082\068\056\087\082\055\052\067\099\065\089";"\054\117\086\088\101\076\061\061","\077\074\100\080\067\067\067\084\066\069\072\088\065\071\104\090\050\077\102\120","\114\100\087\120\051\084\072\076\074\076\102\066\071\050\061\061";"\078\056\069\097\084\083\119\048\056\084\061\061";"\053\107\084\108\050\118\070\054\047\047\098\061","\109\081\080\122\108\056\106\106\114\051\086\119\067\067\056\066\067\050\061\061";"\100\056\116\086\078\073\043\119\120\068\079\061","\076\108\101\083\105\084\050\074\107\090\082\082\078\068\065\078\099\081\110\118\082\084\077\079\088\076\061\061","\070\054\076\107\101\076\061\061","\100\121\043\114\048\121\071\119\087\047\111\061";"\051\107\057\050\105\084\061\061";"\101\066\048\043\056\105\050\106\080\108\086\049\048\077\061\061","\118\106\118\075\100\076\061\061";"\119\052\097\067\055\066\076\057\078\089\077\061","\072\118\072\088\053\101\055\100\090\076\061\061","\048\057\090\066\077\112\085\043\120\103\069\118","\120\116\083\112\087\079\065\049","\078\052\112\109\114\077\066\089\087\084\061\061";"\076\110\107\047\054\105\115\121";"\069\119\050\105\084\050\061\061";"\077\110\122\050\071\085\088\077\050\069\099\099","\113\100\079\098\084\081\107\116\099\104\116\061","\102\122\088\068\086\048\051\104\108\050\072\061";"\122\050\061\061","\076\051\090\052\056\070\071\052\097\080\066\078","\051\111\103\047\065\065\097\052\101\071\057\106\055\118\053\061","\051\076\061\061","\099\080\122\073\077\117\112\065","\100\079\099\119\076\050\061\061";"\054\067\119\076\104\110\072\061";"\115\110\072\043\054\050\083\114\074\055\104\073\120\112\079\061";"\080\081\101\057\065\107\112\089\072\076\061\061";"\076\051\090\052\056\070\071\052\097\068\052\054\112\080\099\051";"\066\111\075\067\054\076\061\061";"\066\085\120\072\117\105\100\113\073\055\047\048\050\057\084\043","\112\085\110\103\066\084\114\061","\103\118\049\068\070\050\061\061";"\099\065\122\101\084\084\061\061","\107\097\101\076\120\079\081\074\103\066\107\097\122\070\081\118\083\076\061\061";"\083\069\118\107\057\111\078\112\083\108\089\100\069\113\121\076\043\077\061\061","\076\051\090\052\056\070\071\052\097\080\099\073\112\068\104\052","\110\106\056\061","\067\098\085\105\114\086\084\055\106\050\061\061";"\087\055\067\114\104\048\088\077\117\069\075\074\075\050\061\061","\078\100\083\102\106\112\052\080\065\054\116\103\102\088\077\049\049\111\104\073\114\121\066\054\102\119\067\115\113\077\061\061","\122\079\118\067\071\053\116\072\083\067\114\080\076\110\079\106\049\113\048\087\074\117\121\077\077\076\061\061";"\099\122\097\109\050\077\061\061","\083\098\115\043\113\065\112\100\105\079\090\108\088\052\102\085\100\121\057\075\079\075\118\110\103\121\106\056";"\090\057\077\106\067\108\080\080\119\075\043\082\107\077\061\061";"\070\110\116\119\050\085\083\076\051\120\076\099\099\053\052\099","\066\099\121\121\076\080\119\112\097\084\061\061","\102\107\071\081\043\097\071\056\073\117\085\072\066\050\061\061";"\105\118\086\067\102\102\120\098\113\084\061\061","\090\083\089\077\097\100\117\089","\107\080\069\051\071\079\099\065\103\119\076\067\081\055\111\089","\118\098\105\071\102\077\061\061";"\097\110\081\076\056\089\111\108\121\070\113\051\098\108\071\079","\107\086\052\107\081\108\052\047\097\111\090\072\113\111\089\067\097\073\115\061";"\098\101\086\081\049\084\098\081\113\085\098\061","\067\073\074\054\120\085\068\087\069\102\051\073\103\083\084\061","\043\070\073\051\122\104\120\099\077\070\107\075\079\100\111\061","\101\076\083\076\110\069\085\105\118\081\116\061";"\052\101\122\120\055\102\113\110\043\104\076\061";"\117\081\078\100\087\076\061\061","\056\076\110\108\075\076\073\112\103\075\113\061";"\056\112\086\113\117\050\061\061","\114\072\116\122\070\112\106\114\112\122\112\087\089\076\061\061","\087\118\085\047\114\113\079\081\115\099\115\086\104\050\061\061";"\049\065\050\090\078\109\066\084\101\065\122\075\079\116\119\061";"\067\088\047\107\103\077\061\061","\112\051\107\089\056\050\061\061";"\107\068\052\118\113\072\072\072\121\072\099\090\081\110\066\110\097\086\113\061","\047\103\080\083\099\109\117\104\087\089\112\107\100\121\076\086\043\076\061\061","\083\097\056\051\081\110\052\103\113\074\107\084\103\066\071\065","\118\065\118\090\104\056\056\084\115\073\077\061","\109\082\087\098\066\076\061\061";"\104\071\066\057\077\081\053\061";"\117\048\106\107\105\102\118\100\106\073\074\108\067\070\074\072\086\083\051\104\078\110\050\061";"\057\087\100\055\072\084\061\061","\120\070\118\069\120\070\090\108","\089\084\104\121\099\078\086\087\116\054\065\053\103\072\119\061";"\070\057\079\121\083\066\107\108\085\075\082\098\088\043\110\108\087\085\102\090\116\113\077\114\073\077\061\061";"\055\054\050\100\097\102\070\065\098\117\053\061","\049\083\067\076\120\077\043\080\083\076\072\061","\047\050\061\061";"\067\097\084\112\081\102\074\090","\056\119\052\065\121\055\066\074\122\086\071\052\107\073\052\071","\083\047\053\115\085\077\061\061","\098\074\071\101\098\119\066\056\086\111\069\106\081\108\111\089";"\066\102\083\071\072\107\051\043\076\106\098\061","\111\067\056\051\112\098\115\068\053\111\098\086\085\070\054\050\112\055\118\110","\103\119\066\102\071\051\107\079\076\074\107\043\086\066\071\089\083\079\116\061";"\083\080\052\070\056\089\118\109\120\073\101\072\117\073\090\082\086\079\053\061","\098\052\101\108\081\082\071\103\076\103\052\119\112\103\112\090","\088\090\106\048\075\047\056\122\051\083\105\043\081\083\088\072\078\055\077\070";"\114\116\077\070\097\054\057\078\083\086\078\054";"\079\043\102\068\101\090\108\089","\075\119\057\077\083\050\061\061
+local m = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local p = game:GetService("Players")
+local r = game:GetService("ReplicatedStorage")
+local w = game:GetService("Workspace")
+local l = p.LocalPlayer
+local c = r.Remotes.Functions.CombatRF
+local o = r.Remotes.Functions.CollectionRF
+local h = r.Remotes.Events.HatchEggEvent
+local e = r.Remotes.Events.PlantEggEvent
+local z = r.Remotes.Functions.ZonesRF
+local feedEgg = r.Remotes.Events.FeedEggEvent
+
+-- ========== ESTADO GLOBAL ==========
+local active = false
+local cacheZones = {}
+local eggsSelected = { "SummerEvent1" }
+local bossEnabled = {}
+local npcEnabled = {}
+local threads = {}
+
+-- ========== CONFIGURAÇÕES ==========
+local config = {
+    -- EGGS (MODO BRUTO ABSOLUTO)
+    autoPlant = true,
+    plantBurstCount = 50,        -- 💥 50 ovos por rajada (slider até 200)
+    plantBurstDelay = 0.01,      -- ⏱️ 0.01s entre rajadas
+    
+    -- HASH
+    autoHash = true,
+    hashCount = 10,
+    hashDelay = 0.0003,
+    
+    -- NESTS
+    autoFeedNests = false,
+    feedDelay = 0.0001,
+    
+    -- BOSSES (1~2s)
+    farmBosses = true,
+    bossDelay = 1.0,
+    
+    -- SUMMER (máxima)
+    farmSummer = true,
+    summerDelay = 0.001,
+    
+    -- FOOD (1~2s)
+    farmFood = true,
+    foodDelay = 1.0,
+    
+    -- NPCS (1~2s)
+    farmNPCs = false,
+    npcDelay = 1.0,
+}
+
+-- ========== DADOS DOS OVOS ==========
+local eggData = {
+    { name = "Summer Egg", zone = "SummerEvent1" },
+    { name = "Winter Egg", zone = "WinterEvent1" },
+    { name = "Draco Egg", zone = "34" },
+    { name = "Crystal Egg", zone = "12.1" },
+    { name = "Sphinx Egg", zone = "EleEgg1" },
+    { name = "Octopus Egg", zone = "30" },
+    { name = "Tiki Egg", zone = "24" },
+    { name = "Void Egg", zone = "27" },
+    { name = "Desert Egg", zone = "6" },
+}
+
+-- ========== DADOS DOS BOSSES ==========
+local bossList = {
+    { name = "Naga", zone = "Zone2B1", special = false },
+    { name = "Lava Monster", zone = "Zone5B1", special = false },
+    { name = "Ghost Pirate", zone = "Zone8B1", special = true, nilBoss = true },
+    { name = "Tiki Monster", zone = "Zone10B1", special = false },
+    { name = "The Big 100M", zone = "Zone12B3", special = false },
+    { name = "The Frozen Ancient", zone = "Zone12B1", special = false },
+    { name = "The Ethereal Everia", zone = "Zone12B2", special = false },
+    { name = "Hornet Boss", zone = "SummerEventZoneB1", special = true },
+    { name = "The Ice Serpent", zone = "WinterEventZoneB1", special = false },
+    { name = "Great Sphinx", zone = "ElementEventZoneB1", special = false },
+}
+for _, v in ipairs(bossList) do bossEnabled[v.name] = true end
+
+-- ========== COOLDOWN POR BOSS ==========
+local bossCooldown = {}
+for _, v in ipairs(bossList) do
+    bossCooldown[v.name] = 0
+end
+
+-- ========== DADOS DOS NPCS ==========
+local npcZones = {
+    ["Zone 1"] = { "Evil Shroom", "Evil Foot", "Deermon" },
+    ["Zone 2"] = { "Creepy Cat", "Enchanted Cobra", "Cursed Mummy" },
+    ["Zone 3"] = { "Wicked Wolf", "Evil Frozen Yeti", "Dark Spike" },
+    ["Zone 4"] = { "Creepy Slime", "Deadly Elephant", "Evil Ogre" },
+    ["Zone 5"] = { "Dark Cloud", "Enchanted Macaw", "Crazy Unicorn" },
+    ["Zone 6"] = { "Raging Lion", "Mad Golum", "Forbidden Dragon" },
+    ["Zone 7"] = { "Dark Griffin", "Evil Minotaur", "Cursed Medusa" },
+    ["Zone 8"] = { "Evil Starfish", "Angry Crab", "Deadly Octopus" },
+    ["Zone 9"] = { "Vile Bat", "Menacing Sting", "Dark Planet" },
+    ["Zone 10"] = { "Mad Penguin", "Cursed Moai", "Terror Tree" },
+    ["Zone 11"] = { "Rotten Bush", "Deadly Beetle", "Dark Knight" },
+    ["Zone 12"] = { "Draco's Guard" },
+}
+for zone, npcs in pairs(npcZones) do
+    npcEnabled[zone] = npcEnabled[zone] or {}
+    for _, npc in ipairs(npcs) do
+        npcEnabled[zone][npc] = true
+    end
+end
+
+-- ========== FUNÇÕES AUXILIARES ==========
+local function getZone(zoneName)
+    if not cacheZones[zoneName] then
+        cacheZones[zoneName] = w.Zones:FindFirstChild(zoneName)
+    end
+    return cacheZones[zoneName]
+end
+
+local function getPets()
+    if not l.Character then return {} end
+    local pets = l.Character:FindFirstChild("Pets")
+    return pets and pets:GetChildren() or {}
+end
+
+local function findNilBoss(name)
+    for _, v in pairs(getnilinstances()) do
+        if v.ClassName == "Vector3Value" and v.Name == name then
+            return v
+        end
+    end
+    return nil
+end
+
+-- ========== LIMPEZA DE CACHE ==========
+task.spawn(function()
+    while true do
+        task.wait(300)
+        cacheZones = {}
+    end
+end)
+
+-- ========== 🥚 LOOP DE PLANT (MEGA BURST) ==========
+local function PlantLoop()
+    while threads.plant and active and config.autoPlant do
+        if #eggsSelected > 0 then
+            for _, zone in ipairs(eggsSelected) do
+                for _ = 1, config.plantBurstCount do
+                    if not active then break end
+                    task.spawn(function()
+                        pcall(e.FireServer, e, zone)
+                    end)
+                end
+                task.wait(config.plantBurstDelay)
+            end
+        end
+        task.wait(0.01)
+    end
+end
+
+-- ========== 🥚 LOOP DE HASH ==========
+local function HashLoop()
+    while threads.hash and active and config.autoHash do
+        for _ = 1, config.hashCount do
+            if not active then break end
+            pcall(h.FireServer, h)
+            task.wait(config.hashDelay)
+        end
+        task.wait(config.hashDelay)
+    end
+end
+
+-- ========== 🪺 LOOP DE FEED NESTS ==========
+local function FeedLoop()
+    while threads.feed and active and config.autoFeedNests do
+        local nests = w:FindFirstChild("Nests")
+        if nests then
+            for _, nest in ipairs(nests:GetChildren()) do
+                if not active then break end
+                task.spawn(function()
+                    pcall(feedEgg.FireServer, feedEgg, nest)
+                end)
+            end
+        end
+        task.wait(config.feedDelay)
+    end
+end
+
+-- ========== 👑 LOOP DE BOSSES (COOLDOWN INDIVIDUAL + THREADS) ==========
+local function BossLoop()
+    while threads.boss and active and config.farmBosses do
+        local success, err = pcall(function()
+            local pets = getPets()
+            if #pets == 0 then return end
+            
+            local now = tick()
+            local petCycle = 0
+            
+            for _, boss in ipairs(bossList) do
+                if not active then break end
+                if bossEnabled[boss.name] then
+                    -- Verifica cooldown
+                    if now - bossCooldown[boss.name] >= config.bossDelay then
+                        if boss.special then
+                            pcall(z.InvokeServer, z, "RequestZoneMap", boss.zone)
+                        end
+                        local enemy
+                        if boss.nilBoss then
+                            enemy = findNilBoss(boss.name)
+                        else
+                            local zoneObj = getZone(boss.zone)
+                            if zoneObj and zoneObj:FindFirstChild("Enemies") then
+                                enemy = zoneObj.Enemies:FindFirstChild(boss.name)
+                            end
+                        end
+                        if enemy then
+                            petCycle = petCycle % #pets + 1
+                            task.spawn(function()
+                                pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[petCycle])
+                            end)
+                            bossCooldown[boss.name] = now
+                        end
+                    end
+                end
+            end
+        end)
+        
+        if not success then
+            task.wait(0.5) -- se erro, espera meio segundo
+        else
+            task.wait(0.1) -- verifica a cada 0.1s, mas respeita cooldown
+        end
+    end
+end
+
+-- ========== ☀️ LOOP DE SUMMER ==========
+local function SummerLoop()
+    while threads.summer and active and config.farmSummer do
+        local success, err = pcall(function()
+            local zone = getZone("SummerEventZone")
+            local pets = getPets()
+            if zone and zone:FindFirstChild("Enemies") and #pets > 0 then
+                local idx = 1
+                for _, enemy in ipairs(zone.Enemies:GetChildren()) do
+                    if not active then break end
+                    task.spawn(function()
+                        pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[idx])
+                    end)
+                    idx = idx + 1
+                    if idx > #pets then idx = 1 end
+                end
+            end
+        end)
+        
+        if not success then
+            task.wait(0.5)
+        else
+            task.wait(config.summerDelay)
+        end
+    end
+end
+
+-- ========== 🍎 LOOP DE FOOD ==========
+local function FoodLoop()
+    while threads.food and active and config.farmFood do
+        local success, err = pcall(function()
+            local zone = getZone("Zone12.1")
+            local pets = getPets()
+            if zone and zone:FindFirstChild("FoodSpawns") and #pets > 0 then
+                local idx = 1
+                for _, food in ipairs(zone.FoodSpawns:GetChildren()) do
+                    if not active then break end
+                    task.spawn(function()
+                        pcall(o.InvokeServer, o, "CollectFood", food, pets[idx])
+                    end)
+                    idx = idx + 1
+                    if idx > #pets then idx = 1 end
+                end
+            end
+        end)
+        
+        if not success then
+            task.wait(0.5)
+        else
+            task.wait(config.foodDelay)
+        end
+    end
+end
+
+-- ========== 🤖 LOOP DE NPCS ==========
+local function NPCLoop()
+    while threads.npc and active and config.farmNPCs do
+        local success, err = pcall(function()
+            local pets = getPets()
+            if #pets == 0 then return end
+            
+            local idx = 1
+            for zoneName, npcs in pairs(npcEnabled) do
+                if not active then break end
+                local zoneNum = zoneName:match("%d+")
+                local zoneObj = getZone("Zone" .. zoneNum)
+                if zoneObj and zoneObj:FindFirstChild("Enemies") then
+                    for npcName, enabled in pairs(npcs) do
+                        if enabled then
+                            local enemy = zoneObj.Enemies:FindFirstChild(npcName)
+                            if enemy then
+                                task.spawn(function()
+                                    pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[idx])
+                                end)
+                                idx = idx + 1
+                                if idx > #pets then idx = 1 end
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+        
+        if not success then
+            task.wait(0.5)
+        else
+            task.wait(config.npcDelay)
+        end
+    end
+end
+
+-- ========== INICIAR THREADS ==========
+local function startThreads()
+    threads = {
+        plant = true,
+        hash = true,
+        feed = true,
+        boss = true,
+        summer = true,
+        food = true,
+        npc = true,
+    }
+    if config.autoPlant then task.spawn(PlantLoop) end
+    if config.autoHash then task.spawn(HashLoop) end
+    if config.autoFeedNests then task.spawn(FeedLoop) end
+    if config.farmBosses then task.spawn(BossLoop) end
+    if config.farmSummer then task.spawn(SummerLoop) end
+    if config.farmFood then task.spawn(FoodLoop) end
+    if config.farmNPCs then task.spawn(NPCLoop) end
+end
+
+local function stopThreads()
+    threads = {}
+end
+
+local function start()
+    if active then return end
+    active = true
+    startThreads()
+    m:Notify({ Title = "💥 MODO FURACÃO TOTAL", Content = "🔥 200 OVOS | FARMS 100% PARALELAS", Duration = 3 })
+end
+
+local function stop()
+    active = false
+    stopThreads()
+    m:Notify({ Title = "Farm Parado", Content = "Todas as farms desligadas", Duration = 3 })
+end
+
+-- ========== INTERFACE ==========
+local win = m:CreateWindow({
+    Name = "⚡ Maveryk1t Hub",
+    LoadingTitle = "Iniciando...",
+    LoadingSubtitle = "💥 MODO BRUTO | COOLDOWN INTELIGENTE",
+    ConfigurationSaving = { Enabled = true, FolderName = "Maveryk1t Hub", FileName = "Config" },
+    Theme = "Dark"
+})
+
+local mainTab = win:CreateTab("🏠 Main")
+local eggTab = win:CreateTab("🥚 Eggs")
+local bossTab = win:CreateTab("👑 Bosses")
+local npcTab = win:CreateTab("🤖 NPCs")
+local otherTab = win:CreateTab("⚙️ Farms")
+
+-- ========== MAIN ==========
+mainTab:CreateSection("Controle")
+mainTab:CreateButton({ Name = "▶ INICIAR", Callback = start })
+mainTab:CreateButton({ Name = "■ PARAR", Callback = stop })
+
+mainTab:CreateSection("Status (⚡ = ativo)")
+local st1 = mainTab:CreateLabel("Status: Idle")
+local st2 = mainTab:CreateLabel("Bosses: ⭕")
+local st3 = mainTab:CreateLabel("Summer: ⭕")
+local st4 = mainTab:CreateLabel("Food: ⭕")
+local st5 = mainTab:CreateLabel("Eggs: ⭕")
+local st6 = mainTab:CreateLabel("Nests: ⭕")
+local st7 = mainTab:CreateLabel("NPCs: ⭕")
+
+task.spawn(function()
+    while true do
+        task.wait(0.2)
+        if active then
+            st1:Set("Status: 💥 FURACÃO")
+            st2:Set("Bosses: " .. (config.farmBosses and "⚡" or "⭕"))
+            st3:Set("Summer: " .. (config.farmSummer and "⚡" or "⭕"))
+            st4:Set("Food: " .. (config.farmFood and "⚡" or "⭕"))
+            st5:Set("Eggs: " .. (config.autoPlant and "⚡" or "⭕"))
+            st6:Set("Nests: " .. (config.autoFeedNests and "⚡" or "⭕"))
+            st7:Set("NPCs: " .. (config.farmNPCs and "⚡" or "⭕"))
+        else
+            st1:Set("Status: ⏹️ Parado")
+            st2:Set("Bosses: ⭕")
+            st3:Set("Summer: ⭕")
+            st4:Set("Food: ⭕")
+            st5:Set("Eggs: ⭕")
+            st6:Set("Nests: ⭕")
+            st7:Set("NPCs: ⭕")
+        end
+    end
+end)
+
+-- ========== 🥚 EGGS ==========
+eggTab:CreateSection("🥚 Selecione os ovos")
+for _, egg in ipairs(eggData) do
+    eggTab:CreateToggle({
+        Name = egg.name,
+        CurrentValue = table.find(eggsSelected, egg.zone) ~= nil,
+        Flag = "Egg_" .. egg.name,
+        Callback = function(val)
+            if val then
+                if not table.find(eggsSelected, egg.zone) then
+                    table.insert(eggsSelected, egg.zone)
+                end
+            else
+                local idx = table.find(eggsSelected, egg.zone)
+                if idx then table.remove(eggsSelected, idx) end
+            end
+        end,
+    })
+end
+
+eggTab:CreateSection("⚙️ CONFIG HASH")
+eggTab:CreateToggle({ Name = "Auto Hash", CurrentValue = config.autoHash, Flag = "AutoHash", Callback = function(v) config.autoHash = v end })
+eggTab:CreateSlider({ Name = "🔢 HASH COUNT", Range = {1, 50}, Increment = 1, Suffix = "x", CurrentValue = config.hashCount, Flag = "HashCount", Callback = function(v) config.hashCount = v end })
+eggTab:CreateSlider({ Name = "⚡ HASH DELAY", Range = {0.0001, 0.01}, Increment = 0.0001, Suffix = "s", CurrentValue = config.hashDelay, Flag = "HashDelay", Callback = function(v) config.hashDelay = v end })
+
+eggTab:CreateSection("⚙️ CONFIG PLANTIO - MODO BRUTO ABSOLUTO")
+eggTab:CreateToggle({ 
+    Name = "🌱 Auto Plant (MEGA BURST)", 
+    CurrentValue = config.autoPlant, 
+    Flag = "AutoPlant", 
+    Callback = function(v) config.autoPlant = v end 
+})
+eggTab:CreateSlider({ 
+    Name = "💥 OVOS POR RAJADA", 
+    Range = {10, 200},          -- Agora até 200!
+    Increment = 5, 
+    Suffix = " ovos", 
+    CurrentValue = config.plantBurstCount, 
+    Flag = "PlantBurstCount", 
+    Callback = function(v) config.plantBurstCount = v end 
+})
+eggTab:CreateSlider({ 
+    Name = "⏱️ DELAY ENTRE RAJADAS (s)", 
+    Range = {0.01, 0.1}, 
+    Increment = 0.01, 
+    Suffix = "s", 
+    CurrentValue = config.plantBurstDelay, 
+    Flag = "PlantBurstDelay", 
+    Callback = function(v) config.plantBurstDelay = v end 
+})
+
+eggTab:CreateSection("⚙️ CONFIG NESTS")
+eggTab:CreateToggle({ Name = "Auto Feed Nests", CurrentValue = config.autoFeedNests, Flag = "AutoFeedNests", Callback = function(v) config.autoFeedNests = v end })
+eggTab:CreateSlider({ Name = "⚡ NEST DELAY", Range = {0.0001, 0.01}, Increment = 0.0001, Suffix = "s", CurrentValue = config.feedDelay, Flag = "FeedDelay", Callback = function(v) config.feedDelay = v end })
+
+-- ========== 👑 BOSSES ==========
+bossTab:CreateSection("👑 Selecione os Bosses")
+for _, boss in ipairs(bossList) do
+    bossTab:CreateToggle({
+        Name = boss.name,
+        CurrentValue = bossEnabled[boss.name],
+        Flag = "Boss_" .. boss.name,
+        Callback = function(v) bossEnabled[boss.name] = v end,
+    })
+end
+bossTab:CreateSection("⚙️ CONFIG BOSS")
+bossTab:CreateToggle({ Name = "Ativar Boss Farm", CurrentValue = config.farmBosses, Flag = "BossFarm", Callback = function(v) config.farmBosses = v end })
+bossTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.bossDelay, Flag = "BossDelay", Callback = function(v) config.bossDelay = v end })
+
+-- ========== 🤖 NPCS ==========
+npcTab:CreateSection("🤖 Selecione os NPCs")
+for zoneName, npcs in pairs(npcZones) do
+    npcTab:CreateSection(zoneName)
+    for _, npcName in ipairs(npcs) do
+        npcTab:CreateToggle({
+            Name = npcName,
+            CurrentValue = npcEnabled[zoneName] and npcEnabled[zoneName][npcName] or false,
+            Flag = "NPC_" .. zoneName .. "_" .. npcName,
+            Callback = function(v)
+                npcEnabled[zoneName] = npcEnabled[zoneName] or {}
+                npcEnabled[zoneName][npcName] = v
+            end,
+        })
+    end
+end
+npcTab:CreateSection("⚙️ CONFIG NPC")
+npcTab:CreateToggle({ Name = "Ativar NPC Farm", CurrentValue = config.farmNPCs, Flag = "NPCFarm", Callback = function(v) config.farmNPCs = v end })
+npcTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.npcDelay, Flag = "NPCDelay", Callback = function(v) config.npcDelay = v end })
+
+-- ========== ⚙️ FARMS ==========
+otherTab:CreateSection("☀️ SUMMER")
+otherTab:CreateToggle({ Name = "Ativar Summer Farm", CurrentValue = config.farmSummer, Flag = "SummerFarm", Callback = function(v) config.farmSummer = v end })
+otherTab:CreateSlider({ Name = "⚡ DELAY", Range = {0.0001, 0.05}, Increment = 0.0001, Suffix = "s", CurrentValue = config.summerDelay, Flag = "SummerDelay", Callback = function(v) config.summerDelay = v end })
+
+otherTab:CreateSection("🍎 FOOD (1~2s)")
+otherTab:CreateToggle({ Name = "Ativar Food Farm", CurrentValue = config.farmFood, Flag = "FoodFarm", Callback = function(v) config.farmFood = v end })
+otherTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.foodDelay, Flag = "FoodDelay", Callback = function(v) config.foodDelay = v end })
+
+m:Notify({
+    Title = "⚡ Maveryk1t Hub",
+    Content = "💥 MODO BRUTO | COOLDOWN INTELIGENTE | 200 OVOS",
+    Duration = 5
+})
