@@ -1,4 +1,3 @@
-local m = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local p = game:GetService("Players")
 local r = game:GetService("ReplicatedStorage")
 local w = game:GetService("Workspace")
@@ -9,49 +8,99 @@ local h = r.Remotes.Events.HatchEggEvent
 local e = r.Remotes.Events.PlantEggEvent
 local z = r.Remotes.Functions.ZonesRF
 local feedEgg = r.Remotes.Events.FeedEggEvent
+local uis = game:GetService("UserInputService")
+local sg = game:GetService("StarterGui")
+local CoreGui = game:GetService("CoreGui")
+local log = game:GetService("LogService")
 
--- ========== ESTADO GLOBAL ==========
+local events = r.Remotes.Events
+
+local currencyRemote = events:FindFirstChild("UpdateCurrency")
+if currencyRemote then
+    currencyRemote:Destroy()
+end
+local fakeCurrency = Instance.new("RemoteEvent")
+fakeCurrency.Name = "UpdateCurrency"
+fakeCurrency.Parent = events
+fakeCurrency.OnClientEvent:Connect(function() end)
+
+local playerScripts = l and l:FindFirstChild("PlayerScripts")
+if playerScripts then
+    for _, v in ipairs(playerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") and (v.Name == "Ma" or v.Name == "Mi") then
+            v:Destroy()
+        end
+    end
+    playerScripts.ChildAdded:Connect(function(child)
+        if child:IsA("LocalScript") and (child.Name == "Ma" or child.Name == "Mi") then
+            child:Destroy()
+        end
+    end)
+end
+
+CoreGui.ChildAdded:Connect(function(child)
+    if child.Name == "CurrencyPopUp" then
+        child:Destroy()
+    end
+end)
+if l and l:FindFirstChild("PlayerGui") then
+    l.PlayerGui.ChildAdded:Connect(function(child)
+        if child.Name == "CurrencyPopUp" then
+            child:Destroy()
+        end
+    end)
+end
+
+task.spawn(function()
+    while true do
+        for _, v in ipairs(CoreGui:GetDescendants()) do
+            if v.Name == "CurrencyPopUp" then
+                pcall(v.Destroy, v)
+            end
+        end
+        local pg = l and l:FindFirstChild("PlayerGui")
+        if pg then
+            for _, v in ipairs(pg:GetDescendants()) do
+                if v.Name == "CurrencyPopUp" then
+                    pcall(v.Destroy, v)
+                end
+            end
+        end
+        task.wait(0.5)
+    end
+end)
+
+task.spawn(function()
+    while true do
+        task.wait(2)
+        log:ClearOutput()
+    end
+end)
+
 local active = false
 local cacheZones = {}
-local eggsSelected = { "SummerEvent1" }
+local eggsSelected = {}
 local bossEnabled = {}
-local npcEnabled = {}
 local threads = {}
+local flags = {}
 
--- ========== CONFIGURAÇÕES ==========
 local config = {
-    -- EGGS (MODO BRUTO ABSOLUTO)
     autoPlant = true,
-    plantBurstCount = 50,        -- 💥 50 ovos por rajada (slider até 200)
-    plantBurstDelay = 0.01,      -- ⏱️ 0.01s entre rajadas
-    
-    -- HASH
+    plantBurstCount = 9,
+    plantBurstDelay = 0.01,
     autoHash = true,
-    hashCount = 10,
-    hashDelay = 0.0003,
-    
-    -- NESTS
+    hashCount = 1,
+    hashDelay = 0.0001,
     autoFeedNests = false,
-    feedDelay = 0.0001,
-    
-    -- BOSSES (1~2s)
+    feedDelay = 0.5,
     farmBosses = true,
-    bossDelay = 1.0,
-    
-    -- SUMMER (máxima)
+    bossDelay = 0.2,
     farmSummer = true,
     summerDelay = 0.001,
-    
-    -- FOOD (1~2s)
     farmFood = true,
-    foodDelay = 1.0,
-    
-    -- NPCS (1~2s)
-    farmNPCs = false,
-    npcDelay = 1.0,
+    foodDelay = 0.2,
 }
 
--- ========== DADOS DOS OVOS ==========
 local eggData = {
     { name = "Summer Egg", zone = "SummerEvent1" },
     { name = "Winter Egg", zone = "WinterEvent1" },
@@ -64,7 +113,10 @@ local eggData = {
     { name = "Desert Egg", zone = "6" },
 }
 
--- ========== DADOS DOS BOSSES ==========
+for _, egg in ipairs(eggData) do
+    flags["Egg_" .. egg.name] = false
+end
+
 local bossList = {
     { name = "Naga", zone = "Zone2B1", special = false },
     { name = "Lava Monster", zone = "Zone5B1", special = false },
@@ -77,37 +129,15 @@ local bossList = {
     { name = "The Ice Serpent", zone = "WinterEventZoneB1", special = false },
     { name = "Great Sphinx", zone = "ElementEventZoneB1", special = false },
 }
-for _, v in ipairs(bossList) do bossEnabled[v.name] = true end
 
--- ========== COOLDOWN POR BOSS ==========
+for _, v in ipairs(bossList) do 
+    bossEnabled[v.name] = true
+    flags["Boss_" .. v.name] = true
+end
+
 local bossCooldown = {}
-for _, v in ipairs(bossList) do
-    bossCooldown[v.name] = 0
-end
+for _, v in ipairs(bossList) do bossCooldown[v.name] = 0 end
 
--- ========== DADOS DOS NPCS ==========
-local npcZones = {
-    ["Zone 1"] = { "Evil Shroom", "Evil Foot", "Deermon" },
-    ["Zone 2"] = { "Creepy Cat", "Enchanted Cobra", "Cursed Mummy" },
-    ["Zone 3"] = { "Wicked Wolf", "Evil Frozen Yeti", "Dark Spike" },
-    ["Zone 4"] = { "Creepy Slime", "Deadly Elephant", "Evil Ogre" },
-    ["Zone 5"] = { "Dark Cloud", "Enchanted Macaw", "Crazy Unicorn" },
-    ["Zone 6"] = { "Raging Lion", "Mad Golum", "Forbidden Dragon" },
-    ["Zone 7"] = { "Dark Griffin", "Evil Minotaur", "Cursed Medusa" },
-    ["Zone 8"] = { "Evil Starfish", "Angry Crab", "Deadly Octopus" },
-    ["Zone 9"] = { "Vile Bat", "Menacing Sting", "Dark Planet" },
-    ["Zone 10"] = { "Mad Penguin", "Cursed Moai", "Terror Tree" },
-    ["Zone 11"] = { "Rotten Bush", "Deadly Beetle", "Dark Knight" },
-    ["Zone 12"] = { "Draco's Guard" },
-}
-for zone, npcs in pairs(npcZones) do
-    npcEnabled[zone] = npcEnabled[zone] or {}
-    for _, npc in ipairs(npcs) do
-        npcEnabled[zone][npc] = true
-    end
-end
-
--- ========== FUNÇÕES AUXILIARES ==========
 local function getZone(zoneName)
     if not cacheZones[zoneName] then
         cacheZones[zoneName] = w.Zones:FindFirstChild(zoneName)
@@ -123,40 +153,33 @@ end
 
 local function findNilBoss(name)
     for _, v in pairs(getnilinstances()) do
-        if v.ClassName == "Vector3Value" and v.Name == name then
-            return v
-        end
+        if v.ClassName == "Vector3Value" and v.Name == name then return v end
     end
     return nil
 end
 
--- ========== LIMPEZA DE CACHE ==========
 task.spawn(function()
-    while true do
-        task.wait(300)
-        cacheZones = {}
+    while true do 
+        task.wait(45) 
+        cacheZones = {} 
     end
 end)
 
--- ========== 🥚 LOOP DE PLANT (MEGA BURST) ==========
 local function PlantLoop()
     while threads.plant and active and config.autoPlant do
-        if #eggsSelected > 0 then
-            for _, zone in ipairs(eggsSelected) do
-                for _ = 1, config.plantBurstCount do
-                    if not active then break end
-                    task.spawn(function()
-                        pcall(e.FireServer, e, zone)
-                    end)
-                end
+        for zone, _ in pairs(eggsSelected) do
+            for _ = 1, config.plantBurstCount do
+                if not active then break end
+                task.spawn(function() pcall(e.FireServer, e, zone) end)
+            end
+            if config.plantBurstDelay > 0 then
                 task.wait(config.plantBurstDelay)
             end
         end
-        task.wait(0.01)
+        task.wait(0.02)
     end
 end
 
--- ========== 🥚 LOOP DE HASH ==========
 local function HashLoop()
     while threads.hash and active and config.autoHash do
         for _ = 1, config.hashCount do
@@ -168,178 +191,99 @@ local function HashLoop()
     end
 end
 
--- ========== 🪺 LOOP DE FEED NESTS ==========
 local function FeedLoop()
     while threads.feed and active and config.autoFeedNests do
         local nests = w:FindFirstChild("Nests")
-        if nests then
+        if nests and feedEgg then
             for _, nest in ipairs(nests:GetChildren()) do
                 if not active then break end
-                task.spawn(function()
-                    pcall(feedEgg.FireServer, feedEgg, nest)
-                end)
+                task.spawn(function() pcall(feedEgg.FireServer, feedEgg, nest) end)
             end
         end
-        task.wait(config.feedDelay)
+        if config.feedDelay > 0 then
+            task.wait(config.feedDelay)
+        end
     end
 end
 
--- ========== 👑 LOOP DE BOSSES (COOLDOWN INDIVIDUAL + THREADS) ==========
 local function BossLoop()
     while threads.boss and active and config.farmBosses do
-        local success, err = pcall(function()
+        local success = pcall(function()
             local pets = getPets()
             if #pets == 0 then return end
-            
-            local now = tick()
+            local now = os.clock()
             local petCycle = 0
-            
             for _, boss in ipairs(bossList) do
                 if not active then break end
-                if bossEnabled[boss.name] then
-                    -- Verifica cooldown
-                    if now - bossCooldown[boss.name] >= config.bossDelay then
-                        if boss.special then
-                            pcall(z.InvokeServer, z, "RequestZoneMap", boss.zone)
+                if bossEnabled[boss.name] and now - bossCooldown[boss.name] >= config.bossDelay then
+                    if boss.special then pcall(z.InvokeServer, z, "RequestZoneMap", boss.zone) end
+                    local enemy
+                    if boss.nilBoss then
+                        enemy = findNilBoss(boss.name)
+                    else
+                        local zoneObj = getZone(boss.zone)
+                        if zoneObj and zoneObj:FindFirstChild("Enemies") then
+                            enemy = zoneObj.Enemies:FindFirstChild(boss.name)
                         end
-                        local enemy
-                        if boss.nilBoss then
-                            enemy = findNilBoss(boss.name)
-                        else
-                            local zoneObj = getZone(boss.zone)
-                            if zoneObj and zoneObj:FindFirstChild("Enemies") then
-                                enemy = zoneObj.Enemies:FindFirstChild(boss.name)
-                            end
-                        end
-                        if enemy then
-                            petCycle = petCycle % #pets + 1
-                            task.spawn(function()
-                                pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[petCycle])
-                            end)
-                            bossCooldown[boss.name] = now
-                        end
+                    end
+                    if enemy then
+                        petCycle = petCycle % #pets + 1
+                        task.spawn(function() pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[petCycle]) end)
+                        bossCooldown[boss.name] = now
                     end
                 end
             end
         end)
-        
-        if not success then
-            task.wait(0.5) -- se erro, espera meio segundo
-        else
-            task.wait(0.1) -- verifica a cada 0.1s, mas respeita cooldown
-        end
+        task.wait(success and 0.1 or 0.5)
     end
 end
 
--- ========== ☀️ LOOP DE SUMMER ==========
 local function SummerLoop()
     while threads.summer and active and config.farmSummer do
-        local success, err = pcall(function()
+        local success = pcall(function()
             local zone = getZone("SummerEventZone")
             local pets = getPets()
             if zone and zone:FindFirstChild("Enemies") and #pets > 0 then
                 local idx = 1
                 for _, enemy in ipairs(zone.Enemies:GetChildren()) do
                     if not active then break end
-                    task.spawn(function()
-                        pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[idx])
-                    end)
+                    task.spawn(function() pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[idx]) end)
                     idx = idx + 1
                     if idx > #pets then idx = 1 end
                 end
             end
         end)
-        
-        if not success then
-            task.wait(0.5)
-        else
-            task.wait(config.summerDelay)
-        end
+        task.wait(success and config.summerDelay or 0.5)
     end
 end
 
--- ========== 🍎 LOOP DE FOOD ==========
 local function FoodLoop()
     while threads.food and active and config.farmFood do
-        local success, err = pcall(function()
+        local success = pcall(function()
             local zone = getZone("Zone12.1")
             local pets = getPets()
             if zone and zone:FindFirstChild("FoodSpawns") and #pets > 0 then
                 local idx = 1
                 for _, food in ipairs(zone.FoodSpawns:GetChildren()) do
                     if not active then break end
-                    task.spawn(function()
-                        pcall(o.InvokeServer, o, "CollectFood", food, pets[idx])
-                    end)
+                    task.spawn(function() pcall(o.InvokeServer, o, "CollectFood", food, pets[idx]) end)
                     idx = idx + 1
                     if idx > #pets then idx = 1 end
                 end
             end
         end)
-        
-        if not success then
-            task.wait(0.5)
-        else
-            task.wait(config.foodDelay)
-        end
+        task.wait(success and config.foodDelay or 0.5)
     end
 end
 
--- ========== 🤖 LOOP DE NPCS ==========
-local function NPCLoop()
-    while threads.npc and active and config.farmNPCs do
-        local success, err = pcall(function()
-            local pets = getPets()
-            if #pets == 0 then return end
-            
-            local idx = 1
-            for zoneName, npcs in pairs(npcEnabled) do
-                if not active then break end
-                local zoneNum = zoneName:match("%d+")
-                local zoneObj = getZone("Zone" .. zoneNum)
-                if zoneObj and zoneObj:FindFirstChild("Enemies") then
-                    for npcName, enabled in pairs(npcs) do
-                        if enabled then
-                            local enemy = zoneObj.Enemies:FindFirstChild(npcName)
-                            if enemy then
-                                task.spawn(function()
-                                    pcall(c.InvokeServer, c, "AttackEnemy", enemy, pets[idx])
-                                end)
-                                idx = idx + 1
-                                if idx > #pets then idx = 1 end
-                            end
-                        end
-                    end
-                end
-            end
-        end)
-        
-        if not success then
-            task.wait(0.5)
-        else
-            task.wait(config.npcDelay)
-        end
-    end
-end
-
--- ========== INICIAR THREADS ==========
 local function startThreads()
-    threads = {
-        plant = true,
-        hash = true,
-        feed = true,
-        boss = true,
-        summer = true,
-        food = true,
-        npc = true,
-    }
+    threads = { plant = true, hash = true, feed = true, boss = true, summer = true, food = true }
     if config.autoPlant then task.spawn(PlantLoop) end
     if config.autoHash then task.spawn(HashLoop) end
     if config.autoFeedNests then task.spawn(FeedLoop) end
     if config.farmBosses then task.spawn(BossLoop) end
     if config.farmSummer then task.spawn(SummerLoop) end
     if config.farmFood then task.spawn(FoodLoop) end
-    if config.farmNPCs then task.spawn(NPCLoop) end
 end
 
 local function stopThreads()
@@ -350,167 +294,290 @@ local function start()
     if active then return end
     active = true
     startThreads()
-    m:Notify({ Title = "💥 MODO FURACÃO TOTAL", Content = "🔥 200 OVOS | FARMS 100% PARALELAS", Duration = 3 })
+    sg:SetCore("SendNotification", { Title = "🔥 Farm Ativo", Text = "9 ovos | Pop-up MORTO | Nests 0.5s", Duration = 2 })
 end
 
 local function stop()
     active = false
     stopThreads()
-    m:Notify({ Title = "Farm Parado", Content = "Todas as farms desligadas", Duration = 3 })
+    sg:SetCore("SendNotification", { Title = "Farm Parado", Text = "Todas farms desligadas", Duration = 2 })
 end
 
--- ========== INTERFACE ==========
-local win = m:CreateWindow({
-    Name = "⚡ Maveryk1t Hub",
-    LoadingTitle = "Iniciando...",
-    LoadingSubtitle = "💥 MODO BRUTO | COOLDOWN INTELIGENTE",
-    ConfigurationSaving = { Enabled = true, FolderName = "Maveryk1t Hub", FileName = "Config" },
-    Theme = "Dark"
-})
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Maveryk1tHub"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = CoreGui
 
-local mainTab = win:CreateTab("🏠 Main")
-local eggTab = win:CreateTab("🥚 Eggs")
-local bossTab = win:CreateTab("👑 Bosses")
-local npcTab = win:CreateTab("🤖 NPCs")
-local otherTab = win:CreateTab("⚙️ Farms")
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 380, 0, 480)
+mainFrame.Position = UDim2.new(0.5, -190, 0.5, -240)
+mainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 25)
+mainFrame.BackgroundTransparency = 0.05
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
 
--- ========== MAIN ==========
-mainTab:CreateSection("Controle")
-mainTab:CreateButton({ Name = "▶ INICIAR", Callback = start })
-mainTab:CreateButton({ Name = "■ PARAR", Callback = stop })
+local topbar = Instance.new("Frame")
+topbar.Size = UDim2.new(1, 0, 0, 45)
+topbar.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+topbar.BorderSizePixel = 0
+topbar.Parent = mainFrame
 
-mainTab:CreateSection("Status (⚡ = ativo)")
-local st1 = mainTab:CreateLabel("Status: Idle")
-local st2 = mainTab:CreateLabel("Bosses: ⭕")
-local st3 = mainTab:CreateLabel("Summer: ⭕")
-local st4 = mainTab:CreateLabel("Food: ⭕")
-local st5 = mainTab:CreateLabel("Eggs: ⭕")
-local st6 = mainTab:CreateLabel("Nests: ⭕")
-local st7 = mainTab:CreateLabel("NPCs: ⭕")
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -50, 1, 0)
+title.Position = UDim2.new(0, 15, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "⚡ MAVERYK1T HUB"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 18
+title.Font = Enum.Font.GothamBold
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = topbar
 
-task.spawn(function()
-    while true do
-        task.wait(0.2)
-        if active then
-            st1:Set("Status: 💥 FURACÃO")
-            st2:Set("Bosses: " .. (config.farmBosses and "⚡" or "⭕"))
-            st3:Set("Summer: " .. (config.farmSummer and "⚡" or "⭕"))
-            st4:Set("Food: " .. (config.farmFood and "⚡" or "⭕"))
-            st5:Set("Eggs: " .. (config.autoPlant and "⚡" or "⭕"))
-            st6:Set("Nests: " .. (config.autoFeedNests and "⚡" or "⭕"))
-            st7:Set("NPCs: " .. (config.farmNPCs and "⚡" or "⭕"))
-        else
-            st1:Set("Status: ⏹️ Parado")
-            st2:Set("Bosses: ⭕")
-            st3:Set("Summer: ⭕")
-            st4:Set("Food: ⭕")
-            st5:Set("Eggs: ⭕")
-            st6:Set("Nests: ⭕")
-            st7:Set("NPCs: ⭕")
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 35, 0, 35)
+closeBtn.Position = UDim2.new(1, -40, 0, 5)
+closeBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+closeBtn.Text = "✕"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.TextSize = 20
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.Parent = topbar
+closeBtn.MouseButton1Click:Connect(function() screenGui:Destroy() end)
+
+local tabFrame = Instance.new("Frame")
+tabFrame.Size = UDim2.new(1, 0, 0, 45)
+tabFrame.Position = UDim2.new(0, 0, 0, 45)
+tabFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+tabFrame.BorderSizePixel = 0
+tabFrame.Parent = mainFrame
+
+local contentFrame = Instance.new("ScrollingFrame")
+contentFrame.Size = UDim2.new(1, -20, 1, -140)
+contentFrame.Position = UDim2.new(0, 10, 0, 100)
+contentFrame.BackgroundTransparency = 1
+contentFrame.BorderSizePixel = 0
+contentFrame.ScrollBarThickness = 4
+contentFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+contentFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+contentFrame.Parent = mainFrame
+
+local statusFrame = Instance.new("Frame")
+statusFrame.Size = UDim2.new(1, 0, 0, 35)
+statusFrame.Position = UDim2.new(0, 0, 1, -35)
+statusFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+statusFrame.BorderSizePixel = 0
+statusFrame.Parent = mainFrame
+
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Size = UDim2.new(1, -10, 1, 0)
+statusLabel.Position = UDim2.new(0, 5, 0, 0)
+statusLabel.BackgroundTransparency = 1
+statusLabel.Text = "⏹️ Parado | 9 ovos | Pop-up MORTO | Nests 0.5s"
+statusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+statusLabel.TextSize = 13
+statusLabel.Font = Enum.Font.Gotham
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+statusLabel.Parent = statusFrame
+
+local tabs = {}
+local currentTab = "Main"
+
+local function createTab(name, posX, icon)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 95, 1, 0)
+    btn.Position = UDim2.new(0, posX, 0, 0)
+    btn.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+    btn.Text = icon .. " " .. name
+    btn.TextColor3 = Color3.fromRGB(180, 180, 180)
+    btn.TextSize = 14
+    btn.Font = Enum.Font.Gotham
+    btn.Parent = tabFrame
+    
+    btn.MouseButton1Click:Connect(function()
+        currentTab = name
+        for _, b in pairs(tabs) do
+            b.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+            b.TextColor3 = Color3.fromRGB(180, 180, 180)
+        end
+        btn.BackgroundColor3 = Color3.fromRGB(65, 105, 225)
+        btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        updateContent(name)
+    end)
+    
+    tabs[name] = btn
+    return btn
+end
+
+createTab("Main", 0, "🏠")
+createTab("Eggs", 100, "🥚")
+createTab("Bosses", 200, "👑")
+createTab("Farms", 300, "⚙️")
+
+local function createLabel(parent, text, yPos, size)
+    size = size or 25
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1, -10, 0, size)
+    lbl.Position = UDim2.new(0, 5, 0, yPos)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text
+    lbl.TextColor3 = Color3.fromRGB(220, 220, 220)
+    lbl.TextSize = size == 25 and 16 or 14
+    lbl.Font = size == 25 and Enum.Font.GothamBold or Enum.Font.Gotham
+    lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.Parent = parent
+    return lbl
+end
+
+local function createButton(parent, text, yPos, color, callback)
+    color = color or Color3.fromRGB(65, 105, 225)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, -20, 0, 40)
+    btn.Position = UDim2.new(0, 10, 0, yPos)
+    btn.BackgroundColor3 = color
+    btn.Text = text
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.TextSize = 16
+    btn.Font = Enum.Font.GothamBold
+    btn.Parent = parent
+    btn.MouseButton1Click:Connect(callback)
+    return btn
+end
+
+local function createToggle(parent, text, yPos, flag, default, callback)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, -10, 0, 35)
+    frame.Position = UDim2.new(0, 5, 0, yPos)
+    frame.BackgroundTransparency = 1
+    frame.Parent = parent
+    
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1, -60, 1, 0)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text
+    lbl.TextColor3 = Color3.fromRGB(220, 220, 220)
+    lbl.TextSize = 14
+    lbl.Font = Enum.Font.Gotham
+    lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.Parent = frame
+    
+    local toggle = Instance.new("TextButton")
+    toggle.Size = UDim2.new(0, 50, 0, 25)
+    toggle.Position = UDim2.new(1, -55, 0.5, -12.5)
+    toggle.BackgroundColor3 = default and Color3.fromRGB(65, 105, 225) or Color3.fromRGB(80, 80, 80)
+    toggle.Text = default and "ON" or "OFF"
+    toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggle.TextSize = 12
+    toggle.Font = Enum.Font.GothamBold
+    toggle.Parent = frame
+    
+    local state = default
+    flags[flag] = state
+    
+    toggle.MouseButton1Click:Connect(function()
+        state = not state
+        flags[flag] = state
+        toggle.BackgroundColor3 = state and Color3.fromRGB(65, 105, 225) or Color3.fromRGB(80, 80, 80)
+        toggle.Text = state and "ON" or "OFF"
+        callback(state)
+    end)
+    
+    return toggle
+end
+
+local function createSlider(parent, text, yPos, min, max, default, suffix, callback)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, -10, 0, 55)
+    frame.Position = UDim2.new(0, 5, 0, yPos)
+    frame.BackgroundTransparency = 1
+    frame.Parent = parent
+    
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1, 0, 0, 20)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text .. ": " .. default .. suffix
+    lbl.TextColor3 = Color3.fromRGB(220, 220, 220)
+    lbl.TextSize = 14
+    lbl.Font = Enum.Font.Gotham
+    lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.Parent = frame
+    
+    local sliderBg = Instance.new("Frame")
+    sliderBg.Size = UDim2.new(1, -20, 0, 8)
+    sliderBg.Position = UDim2.new(0, 10, 0, 35)
+    sliderBg.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+    sliderBg.Parent = frame
+    
+    local sliderFill = Instance.new("Frame")
+    sliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
+    sliderFill.BackgroundColor3 = Color3.fromRGB(65, 105, 225)
+    sliderFill.Parent = sliderBg
+    
+    local value = default
+    
+    sliderBg.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            local function update(input)
+                local pos = uis:GetMouseLocation().X - sliderBg.AbsolutePosition.X
+                local percent = math.clamp(pos / sliderBg.AbsoluteSize.X, 0, 1)
+                value = min + (max - min) * percent
+                value = math.floor(value * 100) / 100
+                sliderFill.Size = UDim2.new(percent, 0, 1, 0)
+                lbl.Text = text .. ": " .. value .. suffix
+                callback(value)
+            end
+            update(input)
+            local conn
+            conn = uis.InputChanged:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+                    update(input)
+                end
+            end)
+            uis.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                    conn:Disconnect()
+                end
+            end)
+        end
+    end)
+    
+    return sliderFill
+end
+
+function updateContent(tabName)
+    for _, v in ipairs(contentFrame:GetChildren()) do
+        if v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("TextButton") then
+            v:Destroy()
         end
     end
-end)
-
--- ========== 🥚 EGGS ==========
-eggTab:CreateSection("🥚 Selecione os ovos")
-for _, egg in ipairs(eggData) do
-    eggTab:CreateToggle({
-        Name = egg.name,
-        CurrentValue = table.find(eggsSelected, egg.zone) ~= nil,
-        Flag = "Egg_" .. egg.name,
-        Callback = function(val)
-            if val then
-                if not table.find(eggsSelected, egg.zone) then
-                    table.insert(eggsSelected, egg.zone)
+    
+    local yPos = 10
+    
+    if tabName == "Main" then
+        createLabel(contentFrame, "🎮 CONTROLE", yPos, 30); yPos = yPos + 35
+        createButton(contentFrame, "▶ INICIAR FARM", yPos, Color3.fromRGB(65, 105, 225), start); yPos = yPos + 50
+        createButton(contentFrame, "■ PARAR FARM", yPos, Color3.fromRGB(220, 50, 50), stop); yPos = yPos + 50
+        
+        createLabel(contentFrame, "📊 STATUS", yPos, 30); yPos = yPos + 35
+        createLabel(contentFrame, "💰 Pop-up de coins: MORTO", yPos, 20); yPos = yPos + 25
+        createLabel(contentFrame, "⚡ Cache limpo a cada 45s", yPos, 20); yPos = yPos + 25
+        createLabel(contentFrame, "✅ Nests: 0.5s cooldown", yPos, 20); yPos = yPos + 25
+        createLabel(contentFrame, "🧹 Console limpo a cada 2s", yPos, 20); yPos = yPos + 25
+        
+    elseif tabName == "Eggs" then
+        createLabel(contentFrame, "🥚 SELECIONE OS OVOS", yPos, 30); yPos = yPos + 35
+        for _, egg in ipairs(eggData) do
+            createToggle(contentFrame, egg.name, yPos, "Egg_" .. egg.name, false, function(state)
+                if state then
+                    eggsSelected[egg.zone] = true
+                else
+                    eggsSelected[egg.zone] = nil
                 end
-            else
-                local idx = table.find(eggsSelected, egg.zone)
-                if idx then table.remove(eggsSelected, idx) end
-            end
-        end,
-    })
-end
-
-eggTab:CreateSection("⚙️ CONFIG HASH")
-eggTab:CreateToggle({ Name = "Auto Hash", CurrentValue = config.autoHash, Flag = "AutoHash", Callback = function(v) config.autoHash = v end })
-eggTab:CreateSlider({ Name = "🔢 HASH COUNT", Range = {1, 50}, Increment = 1, Suffix = "x", CurrentValue = config.hashCount, Flag = "HashCount", Callback = function(v) config.hashCount = v end })
-eggTab:CreateSlider({ Name = "⚡ HASH DELAY", Range = {0.0001, 0.01}, Increment = 0.0001, Suffix = "s", CurrentValue = config.hashDelay, Flag = "HashDelay", Callback = function(v) config.hashDelay = v end })
-
-eggTab:CreateSection("⚙️ CONFIG PLANTIO - MODO BRUTO ABSOLUTO")
-eggTab:CreateToggle({ 
-    Name = "🌱 Auto Plant (MEGA BURST)", 
-    CurrentValue = config.autoPlant, 
-    Flag = "AutoPlant", 
-    Callback = function(v) config.autoPlant = v end 
-})
-eggTab:CreateSlider({ 
-    Name = "💥 OVOS POR RAJADA", 
-    Range = {10, 200},          -- Agora até 200!
-    Increment = 5, 
-    Suffix = " ovos", 
-    CurrentValue = config.plantBurstCount, 
-    Flag = "PlantBurstCount", 
-    Callback = function(v) config.plantBurstCount = v end 
-})
-eggTab:CreateSlider({ 
-    Name = "⏱️ DELAY ENTRE RAJADAS (s)", 
-    Range = {0.01, 0.1}, 
-    Increment = 0.01, 
-    Suffix = "s", 
-    CurrentValue = config.plantBurstDelay, 
-    Flag = "PlantBurstDelay", 
-    Callback = function(v) config.plantBurstDelay = v end 
-})
-
-eggTab:CreateSection("⚙️ CONFIG NESTS")
-eggTab:CreateToggle({ Name = "Auto Feed Nests", CurrentValue = config.autoFeedNests, Flag = "AutoFeedNests", Callback = function(v) config.autoFeedNests = v end })
-eggTab:CreateSlider({ Name = "⚡ NEST DELAY", Range = {0.0001, 0.01}, Increment = 0.0001, Suffix = "s", CurrentValue = config.feedDelay, Flag = "FeedDelay", Callback = function(v) config.feedDelay = v end })
-
--- ========== 👑 BOSSES ==========
-bossTab:CreateSection("👑 Selecione os Bosses")
-for _, boss in ipairs(bossList) do
-    bossTab:CreateToggle({
-        Name = boss.name,
-        CurrentValue = bossEnabled[boss.name],
-        Flag = "Boss_" .. boss.name,
-        Callback = function(v) bossEnabled[boss.name] = v end,
-    })
-end
-bossTab:CreateSection("⚙️ CONFIG BOSS")
-bossTab:CreateToggle({ Name = "Ativar Boss Farm", CurrentValue = config.farmBosses, Flag = "BossFarm", Callback = function(v) config.farmBosses = v end })
-bossTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.bossDelay, Flag = "BossDelay", Callback = function(v) config.bossDelay = v end })
-
--- ========== 🤖 NPCS ==========
-npcTab:CreateSection("🤖 Selecione os NPCs")
-for zoneName, npcs in pairs(npcZones) do
-    npcTab:CreateSection(zoneName)
-    for _, npcName in ipairs(npcs) do
-        npcTab:CreateToggle({
-            Name = npcName,
-            CurrentValue = npcEnabled[zoneName] and npcEnabled[zoneName][npcName] or false,
-            Flag = "NPC_" .. zoneName .. "_" .. npcName,
-            Callback = function(v)
-                npcEnabled[zoneName] = npcEnabled[zoneName] or {}
-                npcEnabled[zoneName][npcName] = v
-            end,
-        })
-    end
-end
-npcTab:CreateSection("⚙️ CONFIG NPC")
-npcTab:CreateToggle({ Name = "Ativar NPC Farm", CurrentValue = config.farmNPCs, Flag = "NPCFarm", Callback = function(v) config.farmNPCs = v end })
-npcTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.npcDelay, Flag = "NPCDelay", Callback = function(v) config.npcDelay = v end })
-
--- ========== ⚙️ FARMS ==========
-otherTab:CreateSection("☀️ SUMMER")
-otherTab:CreateToggle({ Name = "Ativar Summer Farm", CurrentValue = config.farmSummer, Flag = "SummerFarm", Callback = function(v) config.farmSummer = v end })
-otherTab:CreateSlider({ Name = "⚡ DELAY", Range = {0.0001, 0.05}, Increment = 0.0001, Suffix = "s", CurrentValue = config.summerDelay, Flag = "SummerDelay", Callback = function(v) config.summerDelay = v end })
-
-otherTab:CreateSection("🍎 FOOD (1~2s)")
-otherTab:CreateToggle({ Name = "Ativar Food Farm", CurrentValue = config.farmFood, Flag = "FoodFarm", Callback = function(v) config.farmFood = v end })
-otherTab:CreateSlider({ Name = "⏱️ COOLDOWN (segundos)", Range = {1, 2}, Increment = 0.01, Suffix = "s", CurrentValue = config.foodDelay, Flag = "FoodDelay", Callback = function(v) config.foodDelay = v end })
-
-m:Notify({
-    Title = "⚡ Maveryk1t Hub",
-    Content = "💥 MODO BRUTO | COOLDOWN INTELIGENTE | 200 OVOS",
-    Duration = 5
-})
+            end)
+            yPos = yPos + 40
+        end
+        
+        yPos = yPos + 10
+        createLabel(contentFrame, "⚙️ CONFIGURAÇÕES", yPos, 30); yPos = yPos + 35
+        createToggle(contentFrame, "A
